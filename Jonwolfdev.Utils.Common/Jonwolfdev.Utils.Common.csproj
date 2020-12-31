@@ -6,17 +6,18 @@
     <Product>Common Utils</Product>
     <Copyright>jonwolfdev (c) 2020</Copyright>
     <PackageProjectUrl>https://github.com/jonwolfdev</PackageProjectUrl>
-    <PackageLicenseFile>All rights reserved</PackageLicenseFile>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <Description>My common utils used for my projects (jonwolfdev)</Description>
     <PackageReleaseNotes>Initial &amp; alpha version</PackageReleaseNotes>
+    <PackageIcon>icon.JPG</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="All ">
+    <None Include="..\LICENSE.txt">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="All rights reserved">
+    <None Include="..\icon.JPG">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
