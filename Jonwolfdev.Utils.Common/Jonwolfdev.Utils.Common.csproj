@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>jonwolfdev</Authors>
+    <Product>Common Utils</Product>
+    <Copyright>jonwolfdev (c) 2020</Copyright>
+    <PackageProjectUrl>https://github.com/jonwolfdev</PackageProjectUrl>
+    <PackageLicenseFile>All rights reserved</PackageLicenseFile>
+    <Description>My common utils used for my projects (jonwolfdev)</Description>
+    <PackageReleaseNotes>Initial &amp; alpha version</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="All ">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="All rights reserved">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
