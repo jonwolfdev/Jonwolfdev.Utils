@@ -7,9 +7,18 @@ using System.Text;
 
 namespace Jonwolfdev.Utils.Common.Validation
 {
-    public static class ObjectValidator
+    public class ObjectValidator : IObjectValidator
     {
-        public static void Validate(object objx, string paramName)
+        public ObjectValidator()
+        {
+
+        }
+        public void Validate(object obj, string paramName)
+        {
+            ValidateObject(obj, paramName);
+        }
+
+        public static void ValidateObject(object objx, string paramName)
         {
             if (objx == null)
                 throw new ArgumentNullException(nameof(objx));
@@ -22,7 +31,7 @@ namespace Jonwolfdev.Utils.Common.Validation
                     {
                         throw new Exception($"{nameof(ObjectValidator)} Item in list is null. List type: {objx.GetType().Name}");
                     }
-                    Validate(objItem, objItem.GetType().Name);
+                    ValidateObject(objItem, objItem.GetType().Name);
                 }
             }
 
@@ -46,7 +55,7 @@ namespace Jonwolfdev.Utils.Common.Validation
                 var propVal = prop.GetValue(objx);
                 if (propVal != null)
                 {
-                    Validate(propVal, prop.Name);
+                    ValidateObject(propVal, prop.Name);
                 }
             }
 
@@ -56,7 +65,7 @@ namespace Jonwolfdev.Utils.Common.Validation
                 {
                     foreach (var listVal in propVal)
                     {
-                        Validate(listVal, prop.Name);
+                        ValidateObject(listVal, prop.Name);
                     }
                 }
             }
