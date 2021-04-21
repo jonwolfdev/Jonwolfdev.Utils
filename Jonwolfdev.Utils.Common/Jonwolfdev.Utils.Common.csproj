@@ -14,9 +14,9 @@
     <RepositoryUrl>https://github.com/jonwolfdev/Jonwolfdev.Utils</RepositoryUrl>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <FileVersion>1.0.1.0</FileVersion>
-	<Version>1.0.1-beta</Version>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <FileVersion>1.0.2.0</FileVersion>
+	<Version>1.0.2-beta</Version>
   </PropertyGroup>
 
   <ItemGroup>

@@ -31,12 +31,13 @@ namespace Jonwolfdev.Utils.Common.IpThrottle
                 throw new ArgumentNullException(nameof(ip));
 
             DateTimeOffset lastAccess;
+            DateTimeOffset utcnow = DateTimeOffset.UtcNow;
 
             lock (_lock)
             {
                 if (!_db.TryGetValue(ip, out lastAccess))
                 {
-                    lastAccess = DateTimeOffset.UtcNow;
+                    lastAccess = utcnow;
 
                     CleanDictionary();
 
@@ -44,15 +45,17 @@ namespace Jonwolfdev.Utils.Common.IpThrottle
 
                     return false;
                 }
-            }
 
-            if (lastAccess.AddMilliseconds(_throttleWaitMS) > DateTimeOffset.UtcNow)
-            {
-                // Need to wait
-                return true;
-            }
+                if (lastAccess.AddMilliseconds(_throttleWaitMS) > utcnow)
+                {
+                    // Need to wait
+                    return true;
+                }
 
-            return false;
+                // Update the value
+                _db[ip] = utcnow;
+                return false;
+            }
         }
 
         void CleanDictionary()
