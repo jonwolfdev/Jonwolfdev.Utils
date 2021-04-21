@@ -4,20 +4,19 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Authors>jonwolfdev</Authors>
     <Product>Common Utils</Product>
-    <Copyright>jonwolfdev (c) 2020</Copyright>
+    <Copyright>jonwolfdev (c) 2021</Copyright>
     <PackageProjectUrl>https://github.com/jonwolfdev/Jonwolfdev.Utils</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <Description>My common utils used for my projects (jonwolfdev)</Description>
-    <PackageReleaseNotes>Initial &amp; beta version 1.0.0
-- Object Validator, Date
+    <PackageReleaseNotes>Initial &amp; beta version 1.0.1
 </PackageReleaseNotes>
     <PackageIcon>icon.JPG</PackageIcon>
     <RepositoryUrl>https://github.com/jonwolfdev/Jonwolfdev.Utils</RepositoryUrl>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
-	<PackageVersion>1.0.0-beta</PackageVersion>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+	<Version>1.0.1-beta</Version>
   </PropertyGroup>
 
   <ItemGroup>

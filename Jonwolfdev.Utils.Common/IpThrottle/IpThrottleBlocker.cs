@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Jonwolfdev.Utils.Common.IpThrottle
 {
-    public class IpThrottleBlocker : IThrottleBlocker
+    public class IpThrottleBlocker : IIpThrottleBlocker
     {
         readonly Dictionary<IPAddress, DateTimeOffset> _db = new Dictionary<IPAddress, DateTimeOffset>();
 

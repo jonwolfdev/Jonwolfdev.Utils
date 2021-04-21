@@ -76,7 +76,7 @@ namespace Jonwolfdev.Utils.Mvc.Security
 
         bool InternalIsIpAllowed(HttpContext context)
         {
-            var remoteIp = _remoteIpAddressProvider.GetIp(context, true);
+            var remoteIp = _remoteIpAddressProvider.GetIp(context);
 
             bool badIp = true;
             foreach (var address in _allowedIps)

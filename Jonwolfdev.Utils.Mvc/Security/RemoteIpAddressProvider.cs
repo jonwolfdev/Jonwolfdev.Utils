@@ -31,15 +31,16 @@ namespace Jonwolfdev.Utils.Mvc.Security
         /// <param name="context"></param>
         /// <param name="ignoreClientIpHeaderValue"></param>
         /// <returns></returns>
-        public IPAddress GetIp(HttpContext context, bool ignoreClientIpHeaderValue)
+        public IPAddress GetIp(HttpContext context)
         {
             try
             {
                 if (context == null)
                     throw new ArgumentNullException(nameof(context));
 
+                bool getIpDirectly = false;
                 IPAddress remoteIp = null;
-                if (_behindFirewall && !ignoreClientIpHeaderValue)
+                if (_behindFirewall)
                 {
                     // Ip from header
                     if (context.Request.Headers.TryGetValue(_clientIpHeaderName, out var headerValue))
@@ -48,14 +49,31 @@ namespace Jonwolfdev.Utils.Mvc.Security
                         var ip = headerValue.FirstOrDefault();
                         if (!string.IsNullOrWhiteSpace(ip))
                         {
-                            if (!IPAddress.TryParse(ip, out remoteIp))
-                            {
-                                remoteIp = null;
-                            }
+                            IPAddress.TryParse(ip, out remoteIp);
+                        }
+                    }
+                    else
+                    {
+                        // No header, we can check if the connection is from local
+                        if (context.Connection.RemoteIpAddress.Equals(context.Connection.LocalIpAddress))
+                        {
+                            // Remote ip = local ip address (like requesting 192.1.x.x instead of 127.0.0.1)
+                            getIpDirectly = true;
+                        }
+                        else if (IPAddress.IsLoopback(context.Connection.RemoteIpAddress))
+                        {
+                            // Connection through ::1 or 127.0.0.1
+                            getIpDirectly = true;
                         }
                     }
                 }
                 else
+                {
+                    // It's not behind a firewall, so get IP directly
+                    getIpDirectly = true;
+                }
+
+                if (getIpDirectly)
                 {
                     // Development OR actual localhost
                     remoteIp = context.Connection.RemoteIpAddress;
@@ -70,7 +88,7 @@ namespace Jonwolfdev.Utils.Mvc.Security
             }
             catch (Exception e)
             {
-                throw new Exception($"Error at {nameof(GetIp)}/{nameof(RemoteIpAddressProvider)}. {nameof(ignoreClientIpHeaderValue)} = {ignoreClientIpHeaderValue}" + 
+                throw new Exception($"Error at {nameof(GetIp)}/{nameof(RemoteIpAddressProvider)}. " + 
                     $", {nameof(_clientIpHeaderName)} = {_clientIpHeaderName}, {nameof(_behindFirewall)} = {_behindFirewall}", e);
             }
         }

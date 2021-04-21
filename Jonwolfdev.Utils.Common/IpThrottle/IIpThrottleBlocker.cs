@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Jonwolfdev.Utils.Common.IpThrottle
 {
-    public interface IThrottleBlocker
+    public interface IIpThrottleBlocker
     {
         public bool Block(IPAddress ip);
     }

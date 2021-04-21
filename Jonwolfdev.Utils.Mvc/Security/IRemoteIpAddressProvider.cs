@@ -17,6 +17,6 @@ namespace Jonwolfdev.Utils.Mvc.Security
         /// <param name="context"></param>
         /// <param name="ignoreClientIpHeaderValue"></param>
         /// <returns></returns>
-        IPAddress GetIp(HttpContext context, bool ignoreClientIpHeaderValue);
+        IPAddress GetIp(HttpContext context);
     }
 }
