@@ -2,10 +2,30 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Version>1.0.0-beta</Version>
+    <RepositoryUrl>https://github.com/jonwolfdev/Jonwolfdev.Utils</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/jonwolfdev/Jonwolfdev.Utils</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <Description>Utils for MVC projects</Description>
+    <Copyright>jonwolfdev (c) 2021</Copyright>
+    <PackageIcon>icon.JPG</PackageIcon>
+    <PackageReleaseNotes>Initial &amp; beta version 1.0.0
+</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\icon.JPG">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
