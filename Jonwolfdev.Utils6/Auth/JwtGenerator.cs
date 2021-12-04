@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -11,32 +12,29 @@ namespace Jonwolfdev.Utils6.Auth
 {
     public class JwtGenerator : IJwtGenerator
     {
-        readonly JwtGeneratorOptions _options;
+        readonly IOptionsMonitor<JwtGeneratorOptions> _options;
         readonly SigningCredentials _signingCredentials;
-        readonly SymmetricSecurityKey _key;
         readonly JwtSecurityTokenHandler _tokenHandler = new();
 
-        public JwtGenerator(JwtGeneratorOptions options, string signingKey)
+        public JwtGenerator(IOptionsMonitor<JwtGeneratorOptions> options, string signingKey)
         {
             _options = options;
-            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(signingKey));
-            _signingCredentials = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256);
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(signingKey));
+            _signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
         }
 
-        public JwtSecurityToken GenerateJwtSecurityToken(IReadOnlyDictionary<string, string> dictClaims)
+        public JwtSecurityToken GenerateJwtSecurityToken(IReadOnlyList<Claim> claims)
         {
-            var claims = new List<Claim>();
-            foreach (var item in dictClaims)
-            {
-                claims.Add(new Claim(item.Key, item.Value));
-            }
+            var claimsList = new List<Claim>();
+            claimsList.AddRange(claims);
 
-            if (_options.AddClaimIssuedAtTime)
-                claims.Add(new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64));
+            var options = _options.CurrentValue;
+            if (options.AddClaimIssuedAtTime)
+                claimsList.Add(new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64));
 
             return new JwtSecurityToken(
-                _options.Issuer, _options.Audience, claims,
-                DateTime.UtcNow, DateTime.UtcNow.Add(_options.Expiration),
+                options.Issuer, options.Audience, claimsList,
+                DateTime.UtcNow, DateTime.UtcNow.Add(options.Expiration),
                 _signingCredentials);
         }
 
