@@ -5,18 +5,32 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>https://github.com/jonwolfdev</Authors>
+    <Authors>jonwolfdev</Authors>
     <Description>Utilities for jonwolfdev applications</Description>
     <PackageProjectUrl>https://github.com/jonwolfdev</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jonwolfdev</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>utility</PackageTags>
+    <PackageLicenseFile>E:\git\Jonwolfdev.Utils\LICENSE.txt</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <Copyright>Jonwolfdev (c) 2021</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Version>1.0.0-beta</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
