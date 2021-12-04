@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jonwolfdev.Utils.Common", "Jonwolfdev.Utils.Common\Jonwolfdev.Utils.Common.csproj", "{2C61EBD3-1D5F-4ED2-AA93-07B8DD58921F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jonwolfdev.Utils.Common.UnitTests", "Jonwolfdev.Utils.Common.UnitTests\Jonwolfdev.Utils.Common.UnitTests.csproj", "{07789B21-D126-430F-AAD8-728F31FE72BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jonwolfdev.Utils.Mvc", "Jonwolfdev.Utils.Mvc\Jonwolfdev.Utils.Mvc.csproj", "{8253DE3D-37CF-428C-B9C8-A43D5085302B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jonwolfdev.Utils.Mvc", "Jonwolfdev.Utils.Mvc\Jonwolfdev.Utils.Mvc.csproj", "{8253DE3D-37CF-428C-B9C8-A43D5085302B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jonwolfdev.Utils6", "Jonwolfdev.Utils6\Jonwolfdev.Utils6.csproj", "{6E31282C-B731-40C4-8689-39E558985F60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{8253DE3D-37CF-428C-B9C8-A43D5085302B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8253DE3D-37CF-428C-B9C8-A43D5085302B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8253DE3D-37CF-428C-B9C8-A43D5085302B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E31282C-B731-40C4-8689-39E558985F60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E31282C-B731-40C4-8689-39E558985F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E31282C-B731-40C4-8689-39E558985F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E31282C-B731-40C4-8689-39E558985F60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
