@@ -4,6 +4,13 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>https://github.com/jonwolfdev</Authors>
+    <Description>Utilities for jonwolfdev applications</Description>
+    <PackageProjectUrl>https://github.com/jonwolfdev</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jonwolfdev</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>utility</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
