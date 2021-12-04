@@ -12,14 +12,14 @@ namespace Jonwolfdev.Utils6.Auth
 {
     public class JwtGenerator : IJwtGenerator
     {
-        readonly IOptionsMonitor<JwtGeneratorOptions> _options;
-        readonly SigningCredentials _signingCredentials;
+        readonly JwtGeneratorStaticOptions _options;
         readonly JwtSecurityTokenHandler _tokenHandler = new();
+        readonly SigningCredentials _signingCredentials;
 
-        public JwtGenerator(IOptionsMonitor<JwtGeneratorOptions> options, string signingKey)
+        public JwtGenerator(IOptions<JwtGeneratorStaticOptions> options)
         {
-            _options = options;
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(signingKey));
+            _options = options.Value;
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SigningKey));
             _signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
         }
 
@@ -28,13 +28,12 @@ namespace Jonwolfdev.Utils6.Auth
             var claimsList = new List<Claim>();
             claimsList.AddRange(claims);
 
-            var options = _options.CurrentValue;
-            if (options.AddClaimIssuedAtTime)
+            if (_options.AddClaimIssuedAtTime)
                 claimsList.Add(new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64));
 
             return new JwtSecurityToken(
-                options.Issuer, options.Audience, claimsList,
-                DateTime.UtcNow, DateTime.UtcNow.Add(options.Expiration),
+                _options.Issuer, _options.Audience, claimsList,
+                DateTime.UtcNow, DateTime.UtcNow.Add(TimeSpan.FromMinutes(_options.ExpirationMinutes)),
                 _signingCredentials);
         }
 
@@ -42,5 +41,6 @@ namespace Jonwolfdev.Utils6.Auth
         {
             return _tokenHandler.WriteToken(token);
         }
+
     }
 }
