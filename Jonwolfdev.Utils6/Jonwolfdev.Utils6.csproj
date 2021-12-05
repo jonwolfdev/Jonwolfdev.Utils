@@ -11,13 +11,13 @@
     <RepositoryUrl>https://github.com/jonwolfdev</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>utility</PackageTags>
-    <PackageLicenseFile>E:\git\Jonwolfdev.Utils\LICENSE.txt</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <Copyright>Jonwolfdev (c) 2021</Copyright>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Version>1.0.0-beta</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,6 +27,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="COPYING.txt" Pack="true" PackagePath="">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="LICENSE.txt" Pack="true" PackagePath="">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>

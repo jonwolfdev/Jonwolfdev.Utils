@@ -18,7 +18,7 @@ namespace Jonwolfdev.Utils6.Auth
         /// <summary>
         /// TODO: Do not have clear text key in memory
         /// </summary>
-        [Required, MinLength(3)]
+        [Required, MinLength(8)]
         public string SigningKey { get; set; } = "";
 
 

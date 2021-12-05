@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jonwolfdev.Utils.Common.Uni
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jonwolfdev.Utils.Mvc", "Jonwolfdev.Utils.Mvc\Jonwolfdev.Utils.Mvc.csproj", "{8253DE3D-37CF-428C-B9C8-A43D5085302B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jonwolfdev.Utils6", "Jonwolfdev.Utils6\Jonwolfdev.Utils6.csproj", "{6E31282C-B731-40C4-8689-39E558985F60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jonwolfdev.Utils6", "Jonwolfdev.Utils6\Jonwolfdev.Utils6.csproj", "{6E31282C-B731-40C4-8689-39E558985F60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jonwolfdev.Utils6.Tests", "Jonwolfdev.Utils6.Tests\Jonwolfdev.Utils6.Tests.csproj", "{7BFC9D16-D15D-4B0F-BB1C-39B60C69CB40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6E31282C-B731-40C4-8689-39E558985F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E31282C-B731-40C4-8689-39E558985F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E31282C-B731-40C4-8689-39E558985F60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BFC9D16-D15D-4B0F-BB1C-39B60C69CB40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BFC9D16-D15D-4B0F-BB1C-39B60C69CB40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BFC9D16-D15D-4B0F-BB1C-39B60C69CB40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BFC9D16-D15D-4B0F-BB1C-39B60C69CB40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
