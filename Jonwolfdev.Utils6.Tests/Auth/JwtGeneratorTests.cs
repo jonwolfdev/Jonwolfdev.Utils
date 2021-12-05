@@ -62,5 +62,48 @@ namespace Jonwolfdev.Utils6.Tests.Auth
             Assert.Equal("sub1", subClaim.Value);
             Assert.Equal("email1", emailClaim.Value);
         }
+
+        [Fact]
+        public void GenerateJwtSecurityToken_Should_Return_Valid_Object_InvalidKey()
+        {
+            // arrange
+            var options = new JwtGeneratorStaticOptions()
+            {
+                Issuer = "issuer_unit_test",
+                Audience = "aud_unit_test",
+                SigningKey = "sk_secret_sk_secret_000"
+            };
+            var mockOptions = new Mock<IOptions<JwtGeneratorStaticOptions>>();
+            mockOptions.SetupGet(x => x.Value).Returns(options);
+
+            var tokenHandlerParams = new TokenValidationParameters()
+            {
+                ValidateIssuer = true,
+                ValidIssuer = options.Issuer,
+                ValidAudience = options.Audience,
+                ValidateAudience = true,
+                ValidateIssuerSigningKey = true,
+                ValidateLifetime = true,
+                ClockSkew = TimeSpan.FromMinutes(options.ClockSkewMinutes),
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.SigningKey + "incorrect")),
+            };
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            // act
+            var generator = new JwtGenerator(mockOptions.Object);
+            var token = generator.GenerateJwtSecurityToken(new List<Claim>()
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, "sub1"),
+                new Claim(JwtRegisteredClaimNames.Email, "email1")
+            });
+            var tokenStr = generator.SerializeToken(token);
+
+            // assert
+            Assert.NotNull(token);
+            Assert.NotEmpty(tokenStr);
+
+            Assert.True(tokenHandler.CanReadToken(tokenStr));
+            Assert.Throws<SecurityTokenSignatureKeyNotFoundException>(() => { tokenHandler.ValidateToken(tokenStr, tokenHandlerParams, out var newToken); });
+        }
     }
 }
