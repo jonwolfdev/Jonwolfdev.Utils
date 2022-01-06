@@ -7,16 +7,16 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>jonwolfdev</Authors>
     <Description>Utilities for jonwolfdev applications</Description>
-    <PackageProjectUrl>https://github.com/jonwolfdev</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/jonwolfdev</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/jonwolfdev/Jonwolfdev.Utils</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jonwolfdev/Jonwolfdev.Utils</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>utility</PackageTags>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <Copyright>Jonwolfdev (c) 2021</Copyright>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>1.0.0-beta</Version>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <Version>1.1.0-beta</Version>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
 
