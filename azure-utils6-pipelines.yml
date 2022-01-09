@@ -35,10 +35,9 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/*Utils6*.csproj;!**/*Tests*.csproj'
+    configuration: '$(buildConfiguration)'
     includesource: true
-    versioningScheme: 'byEnvVar'
-    versionEnvVar: 'PackageVersion'
-    configuration: $(buildConfiguration)
+    versioningScheme: 'byBuildNumber'
 
 - task: NuGetCommand@2
   inputs:
