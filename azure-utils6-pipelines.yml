@@ -46,7 +46,7 @@ steps:
     command: 'custom'
     projects: '**/*Utils6*.csproj'
     custom: 'pack'
-    arguments: '-p:PackageVersion=$(versionNugetx) --configuration $(buildConfiguration)'
+    arguments: '-p:PackageVersion=$(versionNugetx) --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
 
 - task: NuGetCommand@2
