@@ -47,6 +47,7 @@ steps:
     projects: '**/*Utils6*.csproj'
     custom: 'pack'
     arguments: '-p:PackageVersion=$(versionNugetx) --configuration $(buildConfiguration)'
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
 
 - task: NuGetCommand@2
   displayName: 'Upload nuget'
