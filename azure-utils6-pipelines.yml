@@ -6,7 +6,7 @@
 name: $(Date:yyyyMMdd)$(Rev:.r).0-beta
 
 trigger:
-- master
+- dev
 
 pool:
   vmImage: ubuntu-latest
@@ -33,18 +33,12 @@ steps:
     command: 'build'
     projects: '**/*Utils6*.csproj'
     arguments: '--configuration $(buildConfiguration)'
-#- task: DotNetCoreCLI@2
-#  displayName: 'Nuget pack'
-#  inputs:
-#    command: 'pack'
-#    packagesToPack: '**/*Utils6*.csproj;!**/*Tests*.csproj'
-#    configuration: '$(buildConfiguration)'
-#    includesource: true
-#    versioningScheme: 'off'
+
 - task: DotNetCoreCLI@2
+  displayName: 'Pack'
   inputs:
     command: 'custom'
-    projects: '**/*Utils6*.csproj'
+    projects: '**/*Utils6.csproj'
     custom: 'pack'
     arguments: '-p:PackageVersion=$(versionNugetx) --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
@@ -56,10 +50,3 @@ steps:
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'external'
     publishFeedCredentials: 'Nuget jonwolfdev'
-
-#- task: PublishBuildArtifacts@1
-#  displayName: 'Publish artifacts'
-#  inputs:
-#    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-#    ArtifactName: 'drop-utils6'
-#    publishLocation: 'Container'
