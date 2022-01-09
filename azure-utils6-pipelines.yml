@@ -39,7 +39,7 @@ steps:
     configuration: '$(buildConfiguration)'
     includesource: true
     versioningScheme: 'off'
-    arguments: '/p:PackageVersion= $(Date:yyyyMMdd).$(Rev:.r)-beta'
+    arguments: '/p:PackageVersion="$(Date:yyyyMMdd).$(Rev:.r)-beta\"'
 
 - task: NuGetCommand@2
   displayName: 'Upload nuget'
