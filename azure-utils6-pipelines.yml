@@ -35,14 +35,21 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/*Utils6*.csproj;!**/*Tests*.csproj'
-    includesymbols: true
     includesource: true
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'PackageVersion'
     configuration: $(buildConfiguration)
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish artifacts'
+
+- task: NuGetCommand@2
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop-utils6'
-    publishLocation: 'Container'
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'Nuget jonwolfdev'
+
+#- task: PublishBuildArtifacts@1
+#  displayName: 'Publish artifacts'
+#  inputs:
+#    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#    ArtifactName: 'drop-utils6'
+#    publishLocation: 'Container'
