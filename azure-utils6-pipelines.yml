@@ -31,15 +31,20 @@ steps:
     command: 'build'
     projects: '**/*Utils6*.csproj'
     arguments: '--configuration $(buildConfiguration)'
+#- task: DotNetCoreCLI@2
+#  displayName: 'Nuget pack'
+#  inputs:
+#    command: 'pack'
+#    packagesToPack: '**/*Utils6*.csproj;!**/*Tests*.csproj'
+#    configuration: '$(buildConfiguration)'
+#    includesource: true
+#    versioningScheme: 'off'
 - task: DotNetCoreCLI@2
-  displayName: 'Nuget pack'
   inputs:
-    command: 'pack'
-    packagesToPack: '**/*Utils6*.csproj;!**/*Tests*.csproj'
-    configuration: '$(buildConfiguration)'
-    includesource: true
-    versioningScheme: 'off'
-    arguments: '/p:PackageVersion=testok1 -p:PackageVersion=testok2'
+    command: 'custom'
+    projects: '**/*Utils6*.csproj;!**/*Tests*.csproj'
+    custom: 'pack'
+    arguments: '-p:PackageVersion=$(date:yyyyMMdd).$(rev:.r).0-beta --configuration $(buildConfiguration)'
 
 - task: NuGetCommand@2
   displayName: 'Upload nuget'
