@@ -3,6 +3,9 @@
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
+#name: $(Date:yyyyMMdd).$(semanticVersion)-beta
+name: $(BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth).$(semanticVersion)-beta
+
 trigger:
 - master
 
@@ -37,8 +40,7 @@ steps:
     packagesToPack: '**/*Utils6*.csproj;!**/*Tests*.csproj'
     configuration: '$(buildConfiguration)'
     includesource: true
-    versioningScheme: 'byEnvVar'
-    versionEnvVar: 'packageVersion'
+    versioningScheme: 'byBuildNumber'
 
 - task: NuGetCommand@2
   displayName: 'Upload nuget'
