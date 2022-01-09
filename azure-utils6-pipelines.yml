@@ -11,7 +11,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  versionNugetx: 
+  versionNugetx: $(Date:yyyyMMdd).$(Rev:.r).0-beta
 
 steps:
 - task: UseDotNet@2
@@ -44,7 +44,7 @@ steps:
     command: 'custom'
     projects: '**/*Utils6*.csproj'
     custom: 'pack'
-    arguments: '-p:PackageVersion=$(Date:yyyyMMdd).$(Rev:.r).0-beta --configuration $(buildConfiguration)'
+    arguments: '-p:PackageVersion=$(versionNugetx) --configuration $(buildConfiguration)'
 
 - task: NuGetCommand@2
   displayName: 'Upload nuget'
