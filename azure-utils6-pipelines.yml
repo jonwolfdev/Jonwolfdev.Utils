@@ -1,0 +1,65 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+name: $(Date:yyyyMMdd)$(Rev:.r).0-beta
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  buildConfiguration: 'Release'
+  versionNugetx: $(Build.BuildNumber)
+
+steps:
+- task: UseDotNet@2
+  displayName: 'Use .NET 6.0'
+  inputs:
+    packageType: 'sdk'
+    version: '6.0.x'
+- task: DotNetCoreCLI@2
+  displayName: 'Run tests'
+  inputs:
+    command: 'test'
+    projects: '**/*Utils6*Tests*.csproj'
+    testRunTitle: 'Tests'
+- task: DotNetCoreCLI@2
+  displayName: 'Build release'
+  inputs:
+    command: 'build'
+    projects: '**/*Utils6*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+#- task: DotNetCoreCLI@2
+#  displayName: 'Nuget pack'
+#  inputs:
+#    command: 'pack'
+#    packagesToPack: '**/*Utils6*.csproj;!**/*Tests*.csproj'
+#    configuration: '$(buildConfiguration)'
+#    includesource: true
+#    versioningScheme: 'off'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'custom'
+    projects: '**/*Utils6*.csproj'
+    custom: 'pack'
+    arguments: '-p:PackageVersion=$(versionNugetx) --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
+
+- task: NuGetCommand@2
+  displayName: 'Upload nuget'
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'Nuget jonwolfdev'
+
+#- task: PublishBuildArtifacts@1
+#  displayName: 'Publish artifacts'
+#  inputs:
+#    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#    ArtifactName: 'drop-utils6'
+#    publishLocation: 'Container'
