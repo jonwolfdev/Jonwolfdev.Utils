@@ -25,6 +25,11 @@ steps:
     projects: '**/*Utils6*Tests*.csproj'
     testRunTitle: 'Tests'
 - task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/*Utils6.csproj'
+    configuration: $(buildConfiguration)
+- task: DotNetCoreCLI@2
   displayName: 'Nuget pack'
   inputs:
     command: 'pack'
