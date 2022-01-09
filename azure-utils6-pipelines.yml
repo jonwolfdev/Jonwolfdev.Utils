@@ -3,6 +3,8 @@
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
+name: $(Date:yyyyMMdd).$(Rev:.r).0-beta
+
 trigger:
 - master
 
@@ -11,7 +13,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  versionNugetx: $(Date:yyyyMMdd).$(Rev:.r).0-beta
+  versionNugetx: $(BuildDefinitionName)
 
 steps:
 - task: UseDotNet@2
