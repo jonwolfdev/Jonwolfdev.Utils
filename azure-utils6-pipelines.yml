@@ -31,14 +31,14 @@ steps:
     command: 'build'
     projects: '**/*Utils6*.csproj'
     arguments: '--configuration $(buildConfiguration)'
-- task: DotNetCoreCLI@2
-  displayName: 'Nuget pack'
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/*Utils6*.csproj;!**/*Tests*.csproj'
-    configuration: '$(buildConfiguration)'
-    includesource: true
-    versioningScheme: 'off'
+#- task: DotNetCoreCLI@2
+#  displayName: 'Nuget pack'
+#  inputs:
+#    command: 'pack'
+#    packagesToPack: '**/*Utils6*.csproj;!**/*Tests*.csproj'
+#    configuration: '$(buildConfiguration)'
+#    includesource: true
+#    versioningScheme: 'off'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'custom'
