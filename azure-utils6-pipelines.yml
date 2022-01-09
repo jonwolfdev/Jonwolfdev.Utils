@@ -13,12 +13,19 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: UseDotNet@2
+  displayName: 'Use .NET 6.0'
+  inputs:
+    packageType: 'sdk'
+    version: '6.0.x'
 - task: DotNetCoreCLI@2
+  displayName: 'Run tests'
   inputs:
     command: 'test'
     projects: '**/*Tests*.csproj'
     testRunTitle: 'Tests'
 - task: DotNetCoreCLI@2
+  displayName: 'Nuget pack'
   inputs:
     command: 'pack'
     packagesToPack: '**/*Utils6*.csproj;!**/*Tests*.csproj'
@@ -28,6 +35,7 @@ steps:
     versionEnvVar: 'PackageVersion'
     configuration: $(buildConfiguration)
 - task: PublishBuildArtifacts@1
+  displayName: 'Publish artifacts'
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
