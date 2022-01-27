@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Jonwolfdev.Utils.Common.Validation
+namespace Jonwolfdev.Utils6.Validation
 {
     public interface IObjectValidator
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Jonwolfdev.Utils.Common.Validation
+namespace Jonwolfdev.Utils6.Validation
 {
     public class ObjectValidator : IObjectValidator
     {
