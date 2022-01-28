@@ -18,7 +18,7 @@ namespace Jonwolfdev.Utils.Common.Validation
             ValidateObject(obj, paramName, ThrowException);
         }
 
-        protected virtual void ThrowException(string message, string paramName)
+        public virtual void ThrowException(string message, string paramName)
         {
             // TODO: make this better
             throw new ArgumentException(message, paramName);
