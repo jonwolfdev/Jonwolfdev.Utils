@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace Jonwolfdev.Utils.Common.UnitTests.Validation
+namespace Jonwolfdev.Utils6.Tests.Validation
 {
     public class ObjectValidatorTests
     {
@@ -19,7 +19,7 @@ namespace Jonwolfdev.Utils.Common.UnitTests.Validation
             };
             //Act
 
-            void act() { ObjectValidator.ValidateObject(list, nameof(list)); }
+            void act() { ObjectValidator<object>.ValidateObject(list, nameof(list)); }
 
             //Assert
             var exception = Assert.Throws<ArgumentException>(act);
@@ -34,10 +34,10 @@ namespace Jonwolfdev.Utils.Common.UnitTests.Validation
             List<ObjectToValidate> list = null;
             //Act
 
-            void act() { ObjectValidator.ValidateObject(list, nameof(list)); }
+            void act() { ObjectValidator<object>.ValidateObject(list, nameof(list)); }
 
             //Assert
-            Assert.Throws<ArgumentNullException>(act);
+            Assert.Throws<ArgumentException>(act);
         }
 
         [Fact]
@@ -54,7 +54,7 @@ namespace Jonwolfdev.Utils.Common.UnitTests.Validation
             };
             //Act
 
-            ObjectValidator.ValidateObject(list, nameof(list));
+            ObjectValidator<object>.ValidateObject(list, nameof(list));
 
             //Assert
         }
@@ -74,7 +74,7 @@ namespace Jonwolfdev.Utils.Common.UnitTests.Validation
             };
             //Act
 
-            void act() => ObjectValidator.ValidateObject(list, nameof(list));
+            void act() => ObjectValidator<object>.ValidateObject(list, nameof(list));
 
             //Assert
             var exception = Assert.Throws<ArgumentException>(act);
@@ -96,7 +96,7 @@ namespace Jonwolfdev.Utils.Common.UnitTests.Validation
             };
             //Act
 
-            void act() => ObjectValidator.ValidateObject(list, nameof(list));
+            void act() => ObjectValidator<object>.ValidateObject(list, nameof(list));
 
             //Assert
             var exception = Assert.Throws<ArgumentException>(act);
@@ -113,7 +113,7 @@ namespace Jonwolfdev.Utils.Common.UnitTests.Validation
                 Value = "Morethan2"
             };
             //Act
-            void act() => ObjectValidator.ValidateObject(record, nameof(record));
+            void act() => ObjectValidator<object>.ValidateObject(record, nameof(record));
 
             //Assert
             var exception = Assert.Throws<ArgumentException>(act);

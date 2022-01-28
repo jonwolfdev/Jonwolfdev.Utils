@@ -36,7 +36,7 @@ namespace Jonwolfdev.Utils.Common.UnitTests.Validation
             void act() { ObjectValidator.ValidateObject(list, nameof(list)); }
 
             //Assert
-            Assert.Throws<ArgumentNullException>(act);
+            Assert.Throws<ArgumentException>(act);
         }
 
         [Fact]

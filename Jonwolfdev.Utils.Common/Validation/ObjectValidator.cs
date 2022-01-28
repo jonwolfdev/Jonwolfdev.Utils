@@ -15,19 +15,13 @@ namespace Jonwolfdev.Utils.Common.Validation
         }
         public void Validate(object obj, string paramName)
         {
-            ValidateObject(obj, paramName, ThrowException);
+            ValidateObject(obj, paramName);
         }
 
-        public virtual void ThrowException(string message, string paramName)
-        {
-            // TODO: make this better
-            throw new ArgumentException(message, paramName);
-        }
-
-        public static void ValidateObject(object objx, string paramName, Action<string, string> throwException)
+        public static void ValidateObject(object objx, string paramName)
         {
             if (objx == null)
-                throwException("The object is null", nameof(objx));
+                throw new ArgumentException("The object is null", nameof(objx));
 
             if (objx is System.Collections.IEnumerable objList)
             {
@@ -35,9 +29,9 @@ namespace Jonwolfdev.Utils.Common.Validation
                 {
                     if (objItem == null)
                     {
-                        throwException($"{nameof(ObjectValidator)} Item in list is null. List type: {objx.GetType().Name}", objx.GetType().Name);
+                        throw new ArgumentException($"{nameof(ObjectValidator)} Item in list is null. List type: {objx.GetType().Name}", objx.GetType().Name);
                     }
-                    ValidateObject(objItem, objItem.GetType().Name, throwException);
+                    ValidateObject(objItem, objItem.GetType().Name);
                 }
             }
 
@@ -47,7 +41,7 @@ namespace Jonwolfdev.Utils.Common.Validation
             if (!isValid)
             {
                 string message = string.Join("\r\n", list);
-                throwException(message, paramName);
+                throw new ArgumentException(message, paramName);
             }
 
             //`objx` must be object for this to work
@@ -61,7 +55,7 @@ namespace Jonwolfdev.Utils.Common.Validation
                 var propVal = prop.GetValue(objx);
                 if (propVal != null)
                 {
-                    ValidateObject(propVal, prop.Name, throwException);
+                    ValidateObject(propVal, prop.Name);
                 }
             }
 
@@ -71,7 +65,7 @@ namespace Jonwolfdev.Utils.Common.Validation
                 {
                     foreach (var listVal in propVal)
                     {
-                        ValidateObject(listVal, prop.Name, throwException);
+                        ValidateObject(listVal, prop.Name);
                     }
                 }
             }
