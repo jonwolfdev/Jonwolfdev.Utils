@@ -1,4 +1,5 @@
-﻿using Jonwolfdev.Utils6.Validation;
+﻿using Jonwolfdev.Utils6.Tests.Validation;
+using Jonwolfdev.Utils6.Validation;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -101,6 +102,23 @@ namespace Jonwolfdev.Utils.Common.UnitTests.Validation
             var exception = Assert.Throws<ArgumentException>(act);
             Assert.Contains(nameof(ObjectToValidate.String), exception.Message);
             Assert.Contains("maximum", exception.Message);
+        }
+
+        [Fact]
+        public void ObjectValidator_ShouldValidate_Record_ArgumentException()
+        {
+            //Arrange
+            var record = new RecordToValidate("Morethan3")
+            {
+                Value = "Morethan2"
+            };
+            //Act
+            void act() => ObjectValidator.ValidateObject(record, nameof(record));
+
+            //Assert
+            var exception = Assert.Throws<ArgumentException>(act);
+            Assert.Contains("The field AnotherValue must be a string", exception.Message);
+            Assert.Contains("The field Value must be a string", exception.Message);
         }
     }
 }
