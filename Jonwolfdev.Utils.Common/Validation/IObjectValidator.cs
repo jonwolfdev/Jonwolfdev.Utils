@@ -8,4 +8,8 @@ namespace Jonwolfdev.Utils.Common.Validation
     {
         void Validate(object obj, string paramName);
     }
+
+    public interface IObjectValidator<T> : IObjectValidator
+    {
+    }
 }

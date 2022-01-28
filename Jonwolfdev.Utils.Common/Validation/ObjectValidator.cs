@@ -15,13 +15,19 @@ namespace Jonwolfdev.Utils.Common.Validation
         }
         public void Validate(object obj, string paramName)
         {
-            ValidateObject(obj, paramName);
+            ValidateObject(obj, paramName, ThrowException);
         }
 
-        public static void ValidateObject(object objx, string paramName)
+        public virtual void ThrowException(string message, string paramName)
+        {
+            // TODO: make this better
+            throw new ArgumentException(message, paramName);
+        }
+
+        public static void ValidateObject(object objx, string paramName, Action<string, string> throwException)
         {
             if (objx == null)
-                throw new ArgumentNullException(nameof(objx));
+                throwException("The object is null", nameof(objx));
 
             if (objx is System.Collections.IEnumerable objList)
             {
@@ -29,9 +35,9 @@ namespace Jonwolfdev.Utils.Common.Validation
                 {
                     if (objItem == null)
                     {
-                        throw new Exception($"{nameof(ObjectValidator)} Item in list is null. List type: {objx.GetType().Name}");
+                        throwException($"{nameof(ObjectValidator)} Item in list is null. List type: {objx.GetType().Name}", objx.GetType().Name);
                     }
-                    ValidateObject(objItem, objItem.GetType().Name);
+                    ValidateObject(objItem, objItem.GetType().Name, throwException);
                 }
             }
 
@@ -41,7 +47,7 @@ namespace Jonwolfdev.Utils.Common.Validation
             if (!isValid)
             {
                 string message = string.Join("\r\n", list);
-                throw new ArgumentException(message, paramName);
+                throwException(message, paramName);
             }
 
             //`objx` must be object for this to work
@@ -55,7 +61,7 @@ namespace Jonwolfdev.Utils.Common.Validation
                 var propVal = prop.GetValue(objx);
                 if (propVal != null)
                 {
-                    ValidateObject(propVal, prop.Name);
+                    ValidateObject(propVal, prop.Name, throwException);
                 }
             }
 
@@ -65,7 +71,7 @@ namespace Jonwolfdev.Utils.Common.Validation
                 {
                     foreach (var listVal in propVal)
                     {
-                        ValidateObject(listVal, prop.Name);
+                        ValidateObject(listVal, prop.Name, throwException);
                     }
                 }
             }
