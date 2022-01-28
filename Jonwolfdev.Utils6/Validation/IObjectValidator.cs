@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Jonwolfdev.Utils6.Validation
 {
-    public interface IObjectValidator
+    public interface IObjectValidator<T>
     {
         void Validate(object obj, string paramName);
     }

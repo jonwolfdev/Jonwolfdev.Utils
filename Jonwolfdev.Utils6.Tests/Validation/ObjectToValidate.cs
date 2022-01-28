@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Jonwolfdev.Utils.Common.UnitTests.Validation
+namespace Jonwolfdev.Utils6.Tests.Validation
 {
     public class ObjectToValidate
     {
